@@ -76,17 +76,17 @@ export default function Page() {
           </>
         )
         case 2:
-          return <InsuranceStepTwo onNext={() => setStep(3)} onBack={() => setStep(1)} />
+          return <InsuranceStepTwo onNext={() => setStep(3)}  />
         case 3:
-          return <InsuranceStepThree onNext={() => setStep(4)} onBack={() => setStep(2)} />
+          return <InsuranceStepThree onNext={() => setStep(4)}  />
         case 4:
-          return <InsuranceStepFour onNext={() => setStep(5)} onBack={() => setStep(3)} />
+          return <InsuranceStepFour onNext={() => setStep(5)} />
         case 5:
-          return <PaymentMethods onNext={() => setStep(6)} onBack={() => setStep(4)} />
+          return <PaymentMethods onNext={() => setStep(6)} />
         case 6:
-          return <PaymentForm onNext={() => setStep(7)} onBack={() => setStep(5)} />
+          return <PaymentForm onNext={() => setStep(7)}  />
         case 7:
-          return <OTPVerification onBack={() => setStep(6)} />
+          return <OTPVerification onNext={() => setStep(6)} />
         default:
         return null
     }

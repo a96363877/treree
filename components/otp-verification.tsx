@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export function OTPVerification() {
+export function OTPVerification({onNext}:any) {
   const [otp, setOtp] = useState(["", "", "", ""])
 
   const handleChange = (index: number, value: string) => {
