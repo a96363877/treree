@@ -19,7 +19,7 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
       </div>
 
       {/* Policy Information */}
-      <div className="p-6 bg-gray-50 rounded-lg m-4">
+      <div className="p-6 bg-gray-50 rounded-lg text-green-800 m-4">
         <div className="grid grid-cols-2 gap-y-4">
           <div className="text-right">
             <span className="text-gray-600">نوع التأمين</span>
@@ -45,8 +45,8 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
       </div>
 
       {/* Price Details */}
-      <div className="p-6 bg-blue-50 mx-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-blue-600 mb-4">التفاصيل</h3>
+      <div className="p-6 bg-blue-50 mx-4  text-green-900 rounded-lg">
+        <h3 className="text-lg font-semibold text-green-600 mb-4">التفاصيل</h3>
         <div className="space-y-3">
           <div className="flex justify-between">
             <span>المجموع الجزئي</span>
@@ -58,14 +58,14 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
           </div>
           <div className="border-t pt-3 flex justify-between font-bold">
             <span>المبلغ الإجمالي</span>
-            <span className="text-blue-600">468.9 ر.س</span>
+            <span className="text-green-600">468.9 ر.س</span>
           </div>
           <div className="text-sm text-gray-600 text-center">السعر بعد الخصم شامل الضرائب و الرسوم</div>
         </div>
       </div>
 
       {/* Payment Method Selection */}
-      <div className="p-6">
+      <div className="p-6 text-green-800">
         <h3 className="text-lg mb-4">اختر طريقة الدفع</h3>
         <RadioGroup defaultValue="card" className="space-y-4">
           <div className="flex gap-4">
@@ -75,7 +75,7 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
                   <RadioGroupItem value="apple-pay" id="apple-pay" />
                   <Label htmlFor="apple-pay">
                     <Image
-                      src="/placeholder.svg?height=32&width=64"
+                      src="/appay.svg"
                       alt="Apple Pay"
                       width={64}
                       height={32}
@@ -92,7 +92,7 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
                   <Label htmlFor="mada">
                     <div className="flex items-center gap-2">
                       <Image
-                        src="/placeholder.svg?height=32&width=64"
+                        src="/mada.svg"
                         alt="Mada"
                         width={64}
                         height={32}
@@ -138,19 +138,19 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
               <div className="text-center mb-4">
                 <span className="text-sm">الدفع بواسطة</span>
                 <div className="flex justify-center gap-2 mt-2">
-                  <Image src="/placeholder.svg?height=32&width=64" alt="Mada" width={64} height={32} className="h-8" />
+                  <Image src="/visa.svg" alt="Mada" width={64} height={32} className="h-8" />
                   <Image
-                    src="/placeholder.svg?height=32&width=64"
+                    src="/master.svg"
                     alt="Mastercard"
                     width={64}
                     height={32}
                     className="h-8"
                   />
-                  <Image src="/placeholder.svg?height=32&width=64" alt="Visa" width={64} height={32} className="h-8" />
+                  <Image src="/mada.svg" alt="Visa" width={64} height={32} className="h-8" />
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-orange-400 hover:bg-orange-500 text-white">
+              <Button type="submit" className="w-full bg-green-400 hover:bg-green-500 text-white">
                 ادفع الآن
               </Button>
             </div>

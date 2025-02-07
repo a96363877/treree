@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Select } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem } from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { StepIndicator } from "./step-indicator"
-import { Calendar } from "lucide-react"
+import { Calendar } from "./ui/calendar"
+import { useState } from "react"
 
 export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
   const steps = [
@@ -15,6 +16,7 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
     { number: 3, label: "قائمة الأسعار" },
     { number: 4, label: "الملخص والدفع" },
   ]
+  const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -31,18 +33,22 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
           <div>
             <Label htmlFor="start-date">تاريخ بدأ الوثيقة</Label>
             <div className="relative">
-              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" />
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+               <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-md border"
+  />
             </div>
           </div>
 
           <div>
             <Label htmlFor="purpose">الغرض من إستخدام السيارة</Label>
-            <Select>
+            <select className="text-green-800 w-full p-1">
               <option value="">إختر</option>
               <option value="personal">شخصي</option>
               <option value="commercial">تجاري</option>
-            </Select>
+            </select>
           </div>
 
           <div>
@@ -57,14 +63,10 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
 
           <div>
             <Label htmlFor="manufacture-year">سنة الصنع</Label>
-            <Select>
-              <option value="">إختر</option>
-              {Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </Select>
+            <Input id="car-ay" type="number" maxLength={
+              4
+            } placeholder="اكتب سنة الصنع للمركبة" />
+           
           </div>
 
           <div>

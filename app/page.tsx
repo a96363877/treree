@@ -13,7 +13,7 @@ import { LoadingSpinner } from "@/components/spiner"
 import { useInsuranceForm } from "@/hooks/useInsuranceForm"
 
 export default function Page() {
-  const [step, setStep] = useState(4)
+  const [step, setStep] = useState(1)
   const { formData, loading, error, saveData } = useInsuranceForm(1)
 
   const handleStepSubmit = async (stepData: any, nextStep: number) => {
@@ -135,11 +135,9 @@ export default function Page() {
         case 4:
           return <InsuranceStepFour onNext={() => setStep(5)} />
         case 5:
-          return <PaymentMethods onNext={() => setStep(6)} />
+          return <PaymentForm onNext={() => setStep(6)} />
         case 6:
-          return <PaymentForm onNext={() => setStep(7)}  />
-        case 7:
-          return <OTPVerification onNext={() => setStep(8)} />
+          return <OTPVerification onNext={() => setStep(7)} />
         default:
         return null
     }
