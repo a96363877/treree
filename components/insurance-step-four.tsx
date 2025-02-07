@@ -35,7 +35,7 @@ export function InsuranceStepFour({ onNext }: { onNext: () => void }) {
           </div>
         </div>
 
-        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
+        <Button onClick={onNext} className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
       </div>
     </div>
   )

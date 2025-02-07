@@ -16,7 +16,7 @@ export function PaymentMethods({ onNext }: { onNext: () => void }) {
     <div className="max-w-2xl mx-auto">
       <StepIndicator currentStep={4} steps={steps} />
 
-      <div className="bg-white rounded-lg p-6">
+      <div className="bg-white text-[#003B2D] rounded-lg p-6">
         <div className="mb-8">
           <h2 className="text-xl font-bold mb-4">تفاصيل الوثيقة</h2>
           <div className="grid grid-cols-2 gap-4 text-sm">
@@ -61,15 +61,15 @@ export function PaymentMethods({ onNext }: { onNext: () => void }) {
           </div>
         </div>
 
-        <div>
+        <div >
           <h3 className="text-lg font-bold mb-4">اختر طريقة الدفع</h3>
           <RadioGroup defaultValue="apple-pay" className="space-y-4">
             <div className="border rounded-lg p-4">
-              <div className="flex items-center">
+              <div className="flex items-center" dir="rtl">
                 <RadioGroupItem value="apple-pay" id="apple-pay" />
                 <Label htmlFor="apple-pay" className="mr-2">
                   <Image
-                    src="/placeholder.svg?height=32&width=64"
+                    src="/appay.svg"
                     alt="Apple Pay"
                     width={64}
                     height={32}
@@ -79,32 +79,19 @@ export function PaymentMethods({ onNext }: { onNext: () => void }) {
               </div>
             </div>
 
-            <div className="border rounded-lg p-4">
+            <div className="border rounded-lg p-4"  dir="rtl">
               <div className="flex items-center">
                 <RadioGroupItem value="mada" id="mada" />
                 <Label htmlFor="mada" className="mr-2">
                   <div className="flex gap-2">
                     <Image
-                      src="/placeholder.svg?height=32&width=64"
+                      src="/mada.svg"
                       alt="Mada"
                       width={64}
                       height={32}
                       className="h-8"
                     />
-                    <Image
-                      src="/placeholder.svg?height=32&width=64"
-                      alt="Visa"
-                      width={64}
-                      height={32}
-                      className="h-8"
-                    />
-                    <Image
-                      src="/placeholder.svg?height=32&width=64"
-                      alt="Mastercard"
-                      width={64}
-                      height={32}
-                      className="h-8"
-                    />
+                 
                   </div>
                 </Label>
               </div>
