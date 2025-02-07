@@ -1,16 +1,102 @@
-import Image from 'next/image';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import './globals.css';
-import { Footer } from '@/components/footer';
+"use client"
+import Image from "next/image"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Footer } from "@/components/footer"
+import { InsuranceStepThree } from "@/components/insurance-step-three"
+import { InsuranceStepFour } from "@/components/insurance-step-four"
+import { InsuranceStepFive } from "@/components/insurance-step-five"
+import { useState } from "react"
+import { InsuranceStepTwo } from "@/components/insurance-steps"
+import { PaymentMethods } from "@/components/payment-methods"
+import { PaymentForm } from "@/components/payment-form"
+import { OTPVerification } from "@/components/otp-verification"
+
 export default function Page() {
+  const [step, setStep] = useState(1)
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <>
+            <div className="space-y-2">
+              <h1 className="text-2xl font-bold">ما في أحلى من الحرية، سوق الحين براحتك</h1>
+              <p className="text-gray-300">!لا تفوت الفرصة، أمّن سيارتك بأفضل الأسعار</p>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#00F0AC] rounded-3xl opacity-20 blur-xl"></div>
+              <img
+                src="/motor_bg_ar.png"
+                alt="Vehicle"
+                width={500}
+                height={300}
+                className="relative w-full h-auto"
+              />
+            </div>
+
+            <div className="flex gap-4 justify-center">
+              <Button className="bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">تأمين جديد</Button>
+              <Button
+                variant="outline"
+                className="border-[#00F0AC] text-[#00F0AC] hover:bg-[#00F0AC] hover:text-[#003B2D]"
+              >
+                نقل الملكية
+              </Button>
+              <Button
+                variant="outline"
+                className="border-[#00F0AC] text-[#00F0AC] hover:bg-[#00F0AC] hover:text-[#003B2D]"
+              >
+                تجديد الوثيقة
+              </Button>
+            </div>
+
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault()
+                setStep(2)
+              }}
+            >
+              <Input
+                placeholder="الرقم التسلسلي/ بطاقة جمركية"
+                className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
+              />
+              <Input
+                placeholder="رقم الهوية / الإقامة"
+                className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
+              />
+              <Input
+                placeholder="شهر / سنة الميلاد"
+                className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
+              />
+              <Button className="w-full bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">أمّن سيارتك</Button>
+            </form>
+          </>
+        )
+        case 2:
+          return <InsuranceStepTwo onNext={() => setStep(3)} onBack={() => setStep(1)} />
+        case 3:
+          return <InsuranceStepThree onNext={() => setStep(4)} onBack={() => setStep(2)} />
+        case 4:
+          return <InsuranceStepFour onNext={() => setStep(5)} onBack={() => setStep(3)} />
+        case 5:
+          return <PaymentMethods onNext={() => setStep(6)} onBack={() => setStep(4)} />
+        case 6:
+          return <PaymentForm onNext={() => setStep(7)} onBack={() => setStep(5)} />
+        case 7:
+          return <OTPVerification onBack={() => setStep(6)} />
+        default:
+        return null
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#003B2D] text-white" dir="rtl">
       <header className="flex justify-between items-center p-4">
         <div className="flex items-center gap-2">
-          <button className="bg-[#00F0AC] text-[#003B2D] px-3 py-1 rounded-md">
-            EN
-          </button>
+          <button className="bg-[#00F0AC] text-[#003B2D] px-3 py-1 rounded-md">EN</button>
           <span className="text-[#00F0AC]">ع</span>
         </div>
         <div className="text-[#00F0AC] text-2xl font-bold">tree</div>
@@ -33,64 +119,9 @@ export default function Page() {
         </button>
       </header>
 
-      <main className="p-4 space-y-6">
-        <div className="space-y-2">
-          <h1 className="text-2xl font-bold">
-            ما في أحلى من الحرية، سوق الحين براحتك
-          </h1>
-          <p className="text-gray-300">
-            !لا تفوت الفرصة، أمّن سيارتك بأفضل الأسعار
-          </p>
-        </div>
-
-        <div className="relative">
-          <div className="absolute inset-0 bg-[#00F0AC] rounded-3xl opacity-20 blur-xl"></div>
-          <img
-            src="/motor_bg_ar.png"
-            alt="Vehicle"
-            width={500}
-            height={300}
-            className="relative w-full h-auto"
-          />
-        </div>
-
-        <div className="flex gap-4 justify-center">
-          <Button className="bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">
-            تأمين جديد
-          </Button>
-          <Button
-            variant="outline"
-            className="border-[#00F0AC] text-[#00F0AC] hover:bg-[#00F0AC] hover:text-[#003B2D]"
-          >
-            نقل الملكية
-          </Button>
-          <Button
-            variant="outline"
-            className="border-[#00F0AC] text-[#00F0AC] hover:bg-[#00F0AC] hover:text-[#003B2D]"
-          >
-            تجديد الوثيقة
-          </Button>
-        </div>
-
-        <form className="space-y-4">
-          <Input
-            placeholder="الرقم التسلسلي/ بطاقة جمركية"
-            className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
-          />
-          <Input
-            placeholder="رقم الهوية / الإقامة"
-            className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
-          />
-          <Input
-            placeholder="شهر / سنة الميلاد"
-            className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
-          />
-          <Button className="w-full bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">
-            أمّن سيارتك
-          </Button>
-        </form>
-      </main>
+      <main className="p-4 space-y-6">{renderStep()}</main>
       <Footer />
     </div>
-  );
+  )
 }
+
