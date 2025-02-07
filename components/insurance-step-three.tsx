@@ -48,7 +48,7 @@ export function InsuranceStepThree({onNext}:any) {
           <Button variant="outline" className="flex-1">
             رجوع
           </Button>
-          <Button onClick={onNext}  className="flex-1  bg-green-500 text-white "onClick={onNext}>متابعة</Button>
+          <Button onClick={onNext}  className="flex-1  bg-green-500 text-white ">متابعة</Button>
         </div> 
       </div>
     </div>
