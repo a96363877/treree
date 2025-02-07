@@ -41,7 +41,7 @@ export function PaymentMethods({onNext}:any) {
                 <Label htmlFor="mada" className="flex-1">
                   <div className="flex justify-between items-center">
                     <span>مدى</span>
-                    <img src="/placeholder.svg?height=24&width=60" alt="Mada" className="h-6" />
+                    <img src="/mada.svg?height=24&width=60" alt="Mada" className="h-6" />
                   </div>
                 </Label>
               </div>
@@ -53,23 +53,13 @@ export function PaymentMethods({onNext}:any) {
                 <Label htmlFor="apple-pay" className="flex-1">
                   <div className="flex justify-between items-center">
                     <span>Apple Pay</span>
-                    <img src="/placeholder.svg?height=24&width=60" alt="Apple Pay" className="h-6" />
+                    <img src="/appay.svg?height=24&width=60" alt="Apple Pay" className="h-6" />
                   </div>
                 </Label>
               </div>
             </div>
 
-            <div className="border rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <RadioGroupItem value="sadad" id="sadad" />
-                <Label htmlFor="sadad" className="flex-1">
-                  <div className="flex justify-between items-center">
-                    <span>سداد</span>
-                    <img src="/placeholder.svg?height=24&width=60" alt="Sadad" className="h-6" />
-                  </div>
-                </Label>
-              </div>
-            </div>
+     
           </RadioGroup>
         </div>
 

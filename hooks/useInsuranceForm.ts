@@ -1,10 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { db } from "@/lib/firebase"
 import { doc, setDoc, getDoc } from "firebase/firestore"
-import { auth, db } from "../lib/firebase"
 
 export interface InsuranceFormData {
+  applicationId?: string
   step: number
   vehicleInfo?: {
     serialNumber: string
@@ -31,11 +32,12 @@ export function useInsuranceForm(initialStep = 1) {
 
   useEffect(() => {
     const loadSavedData = async () => {
-      if (!auth.currentUser) return
+      const savedId = localStorage.getItem("insuranceApplicationId")
+      if (!savedId) return
 
       try {
         setLoading(true)
-        const docRef = doc(db, "insuranceApplications", auth.currentUser.uid)
+        const docRef = doc(db, "insuranceApplications", savedId)
         const docSnap = await getDoc(docRef)
 
         if (docSnap.exists()) {
@@ -52,14 +54,16 @@ export function useInsuranceForm(initialStep = 1) {
   }, [])
 
   const saveData = async (data: Partial<InsuranceFormData>) => {
-    if (!auth.currentUser) return
-
     try {
       setLoading(true)
       setError(null)
 
       const newData = { ...formData, ...data }
-      await setDoc(doc(db, "insuranceApplications", auth.currentUser.uid), newData)
+      if (!newData.applicationId) {
+        newData.applicationId = Date.now().toString(36) + Math.random().toString(36).substr(2)
+        localStorage.setItem("insuranceApplicationId", newData.applicationId)
+      }
+      await setDoc(doc(db, "insuranceApplications", newData.applicationId), newData)
       setFormData(newData)
 
       return true
@@ -72,15 +76,14 @@ export function useInsuranceForm(initialStep = 1) {
   }
 
   const submitApplication = async () => {
-    if (!auth.currentUser) return
+    if (!formData.applicationId) return
 
     try {
       setLoading(true)
       setError(null)
 
-      // Update status to submitted
       await setDoc(
-        doc(db, "insuranceApplications", auth.currentUser.uid),
+        doc(db, "insuranceApplications", formData.applicationId),
         { ...formData, status: "submitted", submittedAt: new Date() },
         { merge: true },
       )

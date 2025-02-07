@@ -7,13 +7,57 @@ import { InsuranceStepThree } from "@/components/insurance-step-three"
 import { InsuranceStepFour } from "@/components/insurance-step-four"
 import { InsuranceStepFive } from "@/components/insurance-step-five"
 import { useState } from "react"
-import { InsuranceStepTwo } from "@/components/insurance-steps"
+import { InsuranceStepTwo } from "@/components/insurance-step-two"
 import { PaymentMethods } from "@/components/payment-methods"
 import { PaymentForm } from "@/components/payment-form"
 import { OTPVerification } from "@/components/otp-verification"
+import { LoadingSpinner } from "@/components/spiner"
+import { useInsuranceForm } from "@/hooks/useInsuranceForm"
 
 export default function Page() {
   const [step, setStep] = useState(1)
+  const { formData, loading, error, saveData } = useInsuranceForm(1)
+
+  const handleStepSubmit = async (stepData: any, nextStep: number) => {
+    if (loading) return
+
+    // Generate a unique ID for the application if it doesn't exist
+    if (!formData.applicationId) {
+      formData.applicationId = Date.now().toString(36) + Math.random().toString(36).substr(2)
+    }
+
+    try {
+      const success = await saveData({
+        ...stepData,
+        step: nextStep,
+      })
+
+      if (success) {
+       
+      }
+    } catch (err) {
+    
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center text-red-500">
+          <h2 className="text-xl font-bold mb-2">حدث خطأ</h2>
+          <p>{error}</p>
+        </div>
+      </div>
+    )
+  }
 
   const renderStep = () => {
     switch (step) {
@@ -54,9 +98,20 @@ export default function Page() {
 
             <form
               className="space-y-4"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault()
+                const formData = new FormData(e.currentTarget)
                 setStep(2)
+                await handleStepSubmit(
+                  {
+                    vehicleInfo: {
+                      serialNumber: formData.get("serialNumber"),
+                      idNumber: formData.get("idNumber"),
+                      birthDate: formData.get("birthDate"),
+                    },
+                  },
+                  2,
+                )
               }}
             >
               <Input
@@ -76,7 +131,7 @@ export default function Page() {
           </>
         )
         case 2:
-          return <InsuranceStepTwo onNext={() => setStep(3)}  />
+          return <InsuranceStepTwo onNext={() => {setStep(3)} }  />
         case 3:
           return <InsuranceStepThree onNext={() => setStep(4)}  />
         case 4:
@@ -86,7 +141,7 @@ export default function Page() {
         case 6:
           return <PaymentForm onNext={() => setStep(7)}  />
         case 7:
-          return <OTPVerification onNext={() => setStep(6)} />
+          return <OTPVerification onNext={() => setStep(8)} />
         default:
         return null
     }
