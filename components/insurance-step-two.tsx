@@ -57,7 +57,7 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
 
           <div>
             <Label htmlFor="manufacture-year">سنة الصنع</Label>
-            <Select id="manufacture-year">
+            <Select>
               <option value="">إختر</option>
               {Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i).map((year) => (
                 <option key={year} value={year}>
