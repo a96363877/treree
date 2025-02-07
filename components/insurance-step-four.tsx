@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Car } from "lucide-react"
 
-export function InsuranceStepFour({onNext}:any) {
+export function InsuranceStepFour({ onNext }: { onNext: () => void }) {
   return (
-    <div className=" rounded-lg p-6 max-w-md mx-auto">
+    <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
       <div className="border-b pb-4 mb-6">
-        <h2 className="text-xl font-bold text-green-600">الدفع</h2>
+        <h2 className="text-xl font-bold text-blue-600">الدفع</h2>
       </div>
 
       <div className="space-y-6">
@@ -35,7 +35,7 @@ export function InsuranceStepFour({onNext}:any) {
           </div>
         </div>
 
-        <Button onClick={onNext}  className="w-full bg-green-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
+        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
       </div>
     </div>
   )

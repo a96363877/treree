@@ -1,72 +1,118 @@
-'use client'
-
-import { Button } from "@/components/ui/button"
+"use client"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { Info } from 'lucide-react'
+import Image from "next/image"
+import { StepIndicator } from "./step-indicator"
 
-export function PaymentMethods({onNext}:any) {
+export function PaymentMethods({ onNext }: { onNext: () => void }) {
+  const steps = [
+    { number: 1, label: "البيانات الأساسية" },
+    { number: 2, label: "بيانات التأمين" },
+    { number: 3, label: "قائمة الأسعار" },
+    { number: 4, label: "الملخص والدفع" },
+  ]
+
   return (
-    <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
-      <div className="border-b pb-4 mb-6">
-        <h2 className="text-xl font-bold">اختر طريقة الدفع</h2>
-      </div>
+    <div className="max-w-2xl mx-auto">
+      <StepIndicator currentStep={4} steps={steps} />
 
-      <div className="space-y-6">
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm mb-4">
-            <span>المجموع</span>
-            <span className="text-xl font-bold">1,004.4 ريال</span>
+      <div className="bg-white rounded-lg p-6">
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-4">تفاصيل الوثيقة</h2>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="text-gray-600">نوع التأمين</span>
+              <p>ضد الغير</p>
+            </div>
+            <div>
+              <span className="text-gray-600">شركة التأمين</span>
+              <p>ولاء للتأمين التعاوني</p>
+            </div>
+            <div>
+              <span className="text-gray-600">تاريخ بدء الوثيقة</span>
+              <p>2025-01-28</p>
+            </div>
+            <div>
+              <span className="text-gray-600">الرقم المرجعي للتسعيرة</span>
+              <p>1643877167</p>
+            </div>
+            <div>
+              <span className="text-gray-600">تاريخ انتهاء الوثيقة</span>
+              <p>2026-02-07</p>
+            </div>
           </div>
-
-          <RadioGroup defaultValue="tabby" className="space-y-4">
-            <div className="border rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <RadioGroupItem value="tabby" id="tabby" />
-                <Label htmlFor="tabby" className="flex-1">
-                  <div className="flex justify-between items-center">
-                    <span>تابي - الدفع بالتقسيط</span>
-                    <Info className="w-4 h-4 text-gray-400" />
-                  </div>
-                </Label>
-              </div>
-              <div className="mt-2 text-sm text-gray-600 pr-8">
-                قسّم مبلغ 1,004.4 ريال على 4 دفعات شهرية بقيمة 251.1 ريال
-              </div>
-            </div>
-
-            <div className="border rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <RadioGroupItem value="mada" id="mada" />
-                <Label htmlFor="mada" className="flex-1">
-                  <div className="flex justify-between items-center">
-                    <span>مدى</span>
-                    <img src="/mada.svg?height=24&width=60" alt="Mada" className="h-6" />
-                  </div>
-                </Label>
-              </div>
-            </div>
-
-            <div className="border rounded-lg p-4 bg-[#FFF8F0]">
-              <div className="flex items-center gap-3">
-                <RadioGroupItem value="apple-pay" id="apple-pay" />
-                <Label htmlFor="apple-pay" className="flex-1">
-                  <div className="flex justify-between items-center">
-                    <span>Apple Pay</span>
-                    <img src="/appay.svg?height=24&width=60" alt="Apple Pay" className="h-6" />
-                  </div>
-                </Label>
-              </div>
-            </div>
-
-     
-          </RadioGroup>
         </div>
 
-        <Button onClick={onNext}   className="w-full bg-green-600 text-white">
-          متابعة
-        </Button>
+        <div className="mb-8">
+          <h3 className="text-lg font-bold mb-4">التفاصيل</h3>
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span>المجموع الجزئي</span>
+              <span>521 ر.س</span>
+            </div>
+            <div className="flex justify-between">
+              <span>شامل ضريبة القيمة المضافة (15.00%)</span>
+              <span>0.00 ر.س</span>
+            </div>
+            <div className="flex justify-between font-bold text-lg">
+              <span>المبلغ الإجمالي</span>
+              <span className="text-[#00693E]">468.9 ر.س</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-bold mb-4">اختر طريقة الدفع</h3>
+          <RadioGroup defaultValue="apple-pay" className="space-y-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-center">
+                <RadioGroupItem value="apple-pay" id="apple-pay" />
+                <Label htmlFor="apple-pay" className="mr-2">
+                  <Image
+                    src="/placeholder.svg?height=32&width=64"
+                    alt="Apple Pay"
+                    width={64}
+                    height={32}
+                    className="h-8"
+                  />
+                </Label>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-center">
+                <RadioGroupItem value="mada" id="mada" />
+                <Label htmlFor="mada" className="mr-2">
+                  <div className="flex gap-2">
+                    <Image
+                      src="/placeholder.svg?height=32&width=64"
+                      alt="Mada"
+                      width={64}
+                      height={32}
+                      className="h-8"
+                    />
+                    <Image
+                      src="/placeholder.svg?height=32&width=64"
+                      alt="Visa"
+                      width={64}
+                      height={32}
+                      className="h-8"
+                    />
+                    <Image
+                      src="/placeholder.svg?height=32&width=64"
+                      alt="Mastercard"
+                      width={64}
+                      height={32}
+                      className="h-8"
+                    />
+                  </div>
+                </Label>
+              </div>
+            </div>
+          </RadioGroup>
+        </div>
       </div>
     </div>
   )
 }
+

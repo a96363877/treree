@@ -1,18 +1,10 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Phone,
-  PhoneIcon as WhatsApp,
-} from 'lucide-react';
+import Image from "next/image"
+import Link from "next/link"
+import { Facebook, Instagram, Linkedin, Mail, Phone, PhoneIcon as WhatsApp } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-white text-[#002921] py-8 px-4 mt-8">
+    <footer className="bg-[#002921] text-white py-8 px-4 mt-8">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="text-center">
           <h2 className="text-xl font-bold mb-4">:تواصل معنا</h2>
@@ -38,13 +30,7 @@ export function Footer() {
               <span className="sr-only">Phone</span>
             </Link>
             <Link href="#" className="hover:text-[#00F0AC] transition-colors">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16.99 0H20.298L13.071 8.26L21.573 19.5H14.916L9.702 12.683L3.736 19.5H0.426L8.156 10.665L0 0H6.826L11.539 6.231L16.99 0ZM15.829 17.52H17.662L5.83 1.876H3.863L15.829 17.52Z"
                   fill="currentColor"
@@ -86,24 +72,17 @@ export function Footer() {
         <div className="flex justify-between items-center pt-8 border-t border-gray-700">
           <div className="flex gap-4">
             <Image
-              src="/vercel.svg"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20155345-tAl62bKRJIckBlL6XrFB9vsVh8RXoK.png"
               alt="Certification Logos"
               width={150}
               height={50}
               className="h-12 w-auto"
             />
           </div>
-          <div className="flex gap-4">
-            <Image
-              src="/next.svg"
-              alt="Certification Logos"
-              width={150}
-              height={50}
-              className="h-12 w-auto"
-            />
-          </div>
+          <div className="text-[#00F0AC] text-2xl font-bold">tree</div>
         </div>
       </div>
     </footer>
-  );
+  )
 }
+

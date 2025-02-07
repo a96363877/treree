@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export function OTPVerification({onNext}:any) {
+export function OTPVerification({ onNext }: { onNext: () => void; }) {
   const [otp, setOtp] = useState(["", "", "", ""])
 
   const handleChange = (index: number, value: string) => {
@@ -49,7 +49,7 @@ export function OTPVerification({onNext}:any) {
           </Button>
         </div>
 
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">تأكيد</Button>
+        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">تأكيد</Button>
       </div>
     </div>
   )

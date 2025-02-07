@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CreditCard, Calendar, Lock } from "lucide-react"
 
-export function PaymentForm({onNext}:any) {
+export function PaymentForm({ onNext }: { onNext: () => void; }) {
   return (
     <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
       <div className="border-b pb-4 mb-6">
@@ -41,7 +41,7 @@ export function PaymentForm({onNext}:any) {
           </div>
         </div>
 
-        <Button onClick={onNext}  className="w-full bg-green-600 text-white">دفع 1,004.4 ريال</Button>
+        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">دفع 1,004.4 ريال</Button>
       </form>
     </div>
   )

@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 
-export function InsuranceStepFive({onNext}:any){
+export function InsuranceStepFive() {
   return (
-    <div className="  rounded-lg p-6 max-w-md mx-auto">
+    <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
       <div className="border-b pb-4 mb-6">
         <h2 className="text-xl font-bold">تفاصيل الدفع</h2>
       </div>
@@ -53,7 +53,7 @@ export function InsuranceStepFive({onNext}:any){
           </div>
         </RadioGroup>
 
-        <Button onClick={onNext} className="w-full hover:bg-blue-700 text-white">إتمام الدفع</Button>
+        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام الدفع</Button>
       </div>
     </div>
   )

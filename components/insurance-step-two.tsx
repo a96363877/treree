@@ -2,50 +2,90 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Select } from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+import { StepIndicator } from "./step-indicator"
 import { Calendar } from "lucide-react"
-import Image from "next/image"
 
-export function InsuranceStepTwo({onNext}:any) {
+export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
+  const steps = [
+    { number: 1, label: "البيانات الأساسية" },
+    { number: 2, label: "بيانات التأمين" },
+    { number: 3, label: "قائمة الأسعار" },
+    { number: 4, label: "الملخص والدفع" },
+  ]
+
   return (
-    <div className="  bg-[#003B2D] text-[#00F0AC] rounded-lg p-6 max-w-md mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-green-100 ">قيمة التأمين وتاريخ بداية التأمين</h2>
-      </div>
+    <div className="max-w-2xl mx-auto">
+      <StepIndicator currentStep={2} steps={steps} />
 
-      <div className="space-y-6">
+      <form
+        className="space-y-6"
+        onSubmit={(e) => {
+          e.preventDefault()
+          onNext()
+        }}
+      >
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="start-date">تاريخ بدأ الوثيقة</Label>
+            <div className="relative">
+              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" />
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            </div>
+          </div>
 
-        <div className="relative">
-          <label className="block text-sm text-gray-600 mb-1">تاريخ بداية التأمين</label>
-          <div className="relative">
-            <Input type="text" className="pr-10 border-gray-300" placeholder="اختر التاريخ" />
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <div>
+            <Label htmlFor="purpose">الغرض من إستخدام السيارة</Label>
+            <Select>
+              <option value="">إختر</option>
+              <option value="personal">شخصي</option>
+              <option value="commercial">تجاري</option>
+            </Select>
+          </div>
+
+          <div>
+            <Label htmlFor="car-type">نوع السيارة</Label>
+            <Input id="car-type" placeholder="اكتب نوع السيارة" />
+          </div>
+
+          <div>
+            <Label htmlFor="car-value">القيمة التقديرية للسيارة</Label>
+            <Input id="car-value" placeholder="اكتب القيمة التقديرية للمركبة" />
+          </div>
+
+          <div>
+            <Label htmlFor="manufacture-year">سنة الصنع</Label>
+            <Select id="manufacture-year">
+              <option value="">إختر</option>
+              {Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </Select>
+          </div>
+
+          <div>
+            <Label>مكان الإصلاح</Label>
+            <RadioGroup defaultValue="workshop" className="flex gap-4">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="workshop" id="workshop" />
+                <Label htmlFor="workshop">الورشة</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="agency" id="agency" />
+                <Label htmlFor="agency">الوكالة</Label>
+              </div>
+            </RadioGroup>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-            <span className="text-sm">مستندات</span>
-          </Button>
-          <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-            <span className="text-sm">اضافة سائق</span>
-          </Button>
-          <Button variant="outline" className="border-gray-300 hover:bg-gray-50">
-            <span className="text-sm">تفاصيل التأمين</span>
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <Button  variant="outline" className="border-gray-300">
-            رجوع
-          </Button>
-          <Button onClick={onNext} className="bg-[#00F0AC]  hover:bg-[#00F0AD] text-white">اطلب التأمين</Button>
-        </div>
-
-        <div className="border-t pt-6 mt-6 text-center">
-        <div className="text-[#00F0AC] text-4xl font-bold">tree</div>
-         
-        </div>
-      </div>
+        <Button type="submit" className="w-full bg-[#00693E] text-white hover:bg-[#005432]">
+          التالي
+        </Button>
+      </form>
     </div>
   )
 }
