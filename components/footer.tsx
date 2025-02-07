@@ -72,7 +72,7 @@ export function Footer() {
         <div className="flex justify-between items-center pt-8 border-t border-gray-700">
           <div className="flex gap-4">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-06%20155345-tAl62bKRJIckBlL6XrFB9vsVh8RXoK.png"
+              src="/"
               alt="Certification Logos"
               width={150}
               height={50}

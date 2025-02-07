@@ -28,7 +28,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
 
         <InsuranceCompanyCard
           name="Walaa"
-          logo="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/treecrosa.site_companies(Pixel%207)%20(1)-0XSuhZm9bkcq7UEIf0dFpXGj5siuOS.png"
+          logo="/motor_bg_ar.png"
           rating={5}
           type="ضد الغير"
           benefits={[
@@ -41,7 +41,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
 
         <InsuranceCompanyCard
           name="Tawuniya"
-          logo="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/treecrosa.site_companies(Pixel%207)%20(1)-0XSuhZm9bkcq7UEIf0dFpXGj5siuOS.png"
+          logo="/motor_bg_ar.png"
           rating={4}
           type="ضد الغير"
           benefits={[
