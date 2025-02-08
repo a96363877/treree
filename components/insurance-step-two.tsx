@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem } from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { StepIndicator } from "./step-indicator"
-import { Calendar } from "./ui/calendar"
+import { Calendar } from "lucide-react"
 import { useState } from "react"
 
 export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
@@ -33,12 +33,8 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
           <div>
             <Label htmlFor="start-date">تاريخ بدأ الوثيقة</Label>
             <div className="relative">
-               <Calendar
-    mode="single"
-    selected={date}
-    onSelect={setDate}
-    className="rounded-md border"
-  />
+              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" />
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
           </div>
 

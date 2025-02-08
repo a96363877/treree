@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export function OTPVerification({ onNext }: { onNext: () => void; }) {
-  const [otp, setOtp] = useState(["", "", "", ""])
+  const [otp, setOtp] = useState(["", "", "", "","",""])
 
   const handleChange = (index: number, value: string) => {
     if (value.length <= 1) {
