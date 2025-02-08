@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Star } from "lucide-react"
 
 interface InsuranceCompanyCardProps {
+  onNext:any
   name: string
   logo: string
   rating: number
@@ -10,7 +11,7 @@ interface InsuranceCompanyCardProps {
   type: string
 }
 
-export function InsuranceCompanyCard({ name, logo, rating, benefits, price, type }: InsuranceCompanyCardProps) {
+export function InsuranceCompanyCard({onNext, name, logo, rating, benefits, price, type }: InsuranceCompanyCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6 mb-4">
       <div className="flex justify-between items-start mb-6">
@@ -44,7 +45,7 @@ export function InsuranceCompanyCard({ name, logo, rating, benefits, price, type
           <div className="text-sm text-gray-600 mb-1">الإجمالي</div>
           <div className="text-2xl font-bold">{price} ريال</div>
         </div>
-        <button className="bg-[#00693E] text-white px-6 py-2 rounded-md hover:bg-[#005432]">إشتري الآن</button>
+        <button className="bg-[#00693E] text-white px-6 py-2 rounded-md hover:bg-[#005432]" onClick={onNext}>إشتري الآن</button>
       </div>
     </div>
   )

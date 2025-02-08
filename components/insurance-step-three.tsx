@@ -27,6 +27,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
         </div>
 
         <InsuranceCompanyCard
+        onNext={onNext}
           name="Walaa"
           logo="/motor_bg_ar.png"
           rating={5}
@@ -40,6 +41,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
         />
 
         <InsuranceCompanyCard
+        onNext={onNext}
           name="Tawuniya"
           logo="/motor_bg_ar.png"
           rating={4}
