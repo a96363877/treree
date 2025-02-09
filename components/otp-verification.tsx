@@ -3,11 +3,19 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { LoadingSpinner } from "./spiner"
 const otp:string[]|undefined=[]
 
 export function OTPVerification({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
-
+const [loading,setLoading]=useState(true)
   return (
+    <div className="min-h-[300px] mt-32">
+    
+    {loading?<><LoadingSpinner />
+    <p className="text-center mt-4">
+    جاري التحقق من عملية الدفع...
+    </p>
+    </>:
     <form 
     onSubmit={(e)=>{
       e.preventDefault()
@@ -50,6 +58,8 @@ export function OTPVerification({ onNext,handleStepSubmit }: { onNext: () => voi
         <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">تأكيد</Button>
       </div>
     </form>
+  }
+    </div>
   )
 }
 

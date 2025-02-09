@@ -5,14 +5,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Image from "next/image"
-import { Shield } from "lucide-react"
+import { Shield, XCircle } from "lucide-react"
 import { InsuranceBillPreview } from "./insurance-bill-preview"
+import { useState } from "react"
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
 
-export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
-  
+export function PaymentForm({ onNext, handleStepSubmit }: { onNext: () => void, handleStepSubmit: any }) {
+  const [PaymentMethod, setPaymentMethod] = useState('mada')
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg">
-   
+
       <InsuranceBillPreview />
 
       {/* Payment Method Selection */}
@@ -23,7 +25,7 @@ export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,ha
             <div className="flex-1">
               <div className="border rounded-lg p-4 cursor-pointer hover:border-blue-500">
                 <div className="flex items-center gap-2">
-                  <RadioGroupItem value="apple-pay" id="apple-pay" />
+                  <RadioGroupItem value="apple-pay" id="apple-pay" onClick={() => setPaymentMethod('apple')} checked={PaymentMethod === 'apple'} />
                   <Label htmlFor="apple-pay">
                     <Image
                       src="/appay.svg"
@@ -39,16 +41,29 @@ export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,ha
             <div className="flex-1">
               <div className="border rounded-lg p-4 cursor-pointer hover:border-blue-500">
                 <div className="flex items-center gap-2">
-                  <RadioGroupItem value="mada" id="mada" />
+                  <RadioGroupItem value="mada" id="mada" onClick={() => setPaymentMethod('mada')} checked={PaymentMethod === 'mada'} />
                   <Label htmlFor="mada">
                     <div className="flex items-center gap-2">
-                      <Image
+                    <Image
                         src="/mada.svg"
                         alt="Mada"
-                        width={64}
+                        width={32}
                         height={32}
                         className="h-8"
-                      />
+                      />  <Image
+                      src="/visa.svg"
+                      alt="Mada"
+                      width={32}
+                      height={32}
+                      className="h-8"
+                    />
+                    <Image
+                      src="/master.svg"
+                      alt="Mada"
+                      width={32}
+                      height={32}
+                      className="h-8"
+                    />
                     </div>
                   </Label>
                 </div>
@@ -56,14 +71,15 @@ export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,ha
             </div>
           </div>
         </RadioGroup>
-
         {/* Card Payment Form */}
-        <div className="mt-6">
-          <h3 className="text-lg mb-4">الدفع بالبطاقات البنكية</h3>
-          <form className="space-y-4" onSubmit={(e)=>{
+
+        {PaymentMethod === 'mada' ?
+          (<div className="mt-6">
+            <h3 className="text-lg mb-4">الدفع بالبطاقات البنكية</h3>
+            <form className="space-y-4" onSubmit={(e) => {
               e.preventDefault()
               const formData = new FormData(e.currentTarget)
-               handleStepSubmit(
+              handleStepSubmit(
                 {
                   paymentInfo: {
                     cardName: formData.get("cardName"),
@@ -76,53 +92,63 @@ export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,ha
                 3,
               )
               onNext()
-          }}>
-            <div>
-              <Label htmlFor="cardHolder">اسم حامل البطاقة *</Label>
-              <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1" required name="cardName"/>
-            </div>
-
-            <div>
-              <Label htmlFor="cardNumber">رقم البطاقة *</Label>
-              <Input minLength={16} maxLength={16} id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1" required name="cardNumber" />
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="col-span-2">
-                <Label>تاريخ صلاحية البطاقة *</Label>
-                <div className="grid grid-cols-2 gap-2 mt-1">
-                  <Input placeholder="السنة" name="cardYear" />
-                  <Input placeholder="الشهر" name="cardMonth" />
-                </div>
-              </div>
+            }}>
               <div>
-                <Label htmlFor="cvv">CVV *</Label>
-                <Input id="cvv" placeholder="***" className="mt-1" maxLength={3} required name="cvv"/>
+                <Label htmlFor="cardHolder">اسم حامل البطاقة *</Label>
+                <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1" required name="cardName" />
               </div>
-            </div>
 
-            <div className="pt-4">
-              <div className="text-center mb-4">
-                <span className="text-sm">الدفع بواسطة</span>
-                <div className="flex justify-center gap-2 mt-2">
-                  <Image src="/visa.svg" alt="Mada" width={64} height={32} className="h-8" />
-                  <Image
-                    src="/master.svg"
-                    alt="Mastercard"
-                    width={64}
-                    height={32}
-                    className="h-8"
-                  />
-                  <Image src="/mada.svg" alt="Visa" width={64} height={32} className="h-8" />
+              <div>
+                <Label htmlFor="cardNumber">رقم البطاقة *</Label>
+                <Input minLength={16} maxLength={16} id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1" required name="cardNumber" />
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-2">
+                  <Label>تاريخ صلاحية البطاقة *</Label>
+                  <div className="grid grid-cols-2 gap-2 mt-1">
+                    <Input placeholder="السنة" name="cardYear" />
+                    <Input placeholder="الشهر" name="cardMonth" />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="cvv">CVV *</Label>
+                  <Input id="cvv" placeholder="***" className="mt-1" maxLength={3} required name="cvv" />
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-green-400 hover:bg-green-500 text-white">
-                ادفع الآن
-              </Button>
-            </div>
-          </form>
-        </div>
+              <div className="pt-4">
+                <div className="text-center mb-4">
+                  <span className="text-sm">الدفع بواسطة</span>
+                  <div className="flex justify-center gap-2 mt-2">
+                    <Image src="/visa.svg" alt="Mada" width={64} height={32} className="h-8" />
+                    <Image
+                      src="/master.svg"
+                      alt="Mastercard"
+                      width={64}
+                      height={32}
+                      className="h-8"
+                    />
+                    <Image src="/mada.svg" alt="Visa" width={64} height={32} className="h-8" />
+                  </div>
+                </div>
+
+                <Button type="submit" className="w-full bg-green-400 hover:bg-green-500 text-white">
+                  ادفع الآن
+                </Button>
+              </div>
+
+            </form>
+
+          </div>) :
+          <div className="text-red-600 mt-4 text-bold">
+            <Alert className="rounded" variant="destructive" dir="rtl">
+              <XCircle className="h-4 w-4" />
+              <AlertTitle>خطأ</AlertTitle>
+              <AlertDescription>نعتذر لا يمكنك استخدام هذة الوسيلة في الوقت الحالي</AlertDescription>
+            </Alert>
+          </div>
+        }
       </div>
     </div>
   )

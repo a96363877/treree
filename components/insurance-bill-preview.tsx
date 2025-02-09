@@ -12,12 +12,12 @@ export function InsuranceBillPreview() {
   }
 
   return (
-    <div className="bg-white rounded-lg">
+    <div className="bg-white text-green-800 rounded-lg">
       {/* Policy Details Header */}
       <div className="border-b">
         <div className="p-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">تفاصيل الوثيقة</h2>
-          <Shield className="w-6 h-6 text-blue-600" />
+          <Shield className="w-6 h-6 text-green-600" />
         </div>
       </div>
 
@@ -48,8 +48,8 @@ export function InsuranceBillPreview() {
       </div>
 
       {/* Price Details */}
-      <div className="p-6 bg-blue-50 mx-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-blue-600 mb-4">التفاصيل</h3>
+      <div className="p-6 bg-green-50 mx-4 rounded-lg">
+        <h3 className="text-lg font-semibold text-green-600 mb-4">التفاصيل</h3>
         <div className="space-y-3">
           <div className="flex justify-between">
             <span>المجموع الجزئي</span>
@@ -61,7 +61,7 @@ export function InsuranceBillPreview() {
           </div>
           <div className="border-t pt-3 flex justify-between font-bold">
             <span>المبلغ الإجمالي</span>
-            <span className="text-blue-600">{total} ر.س</span>
+            <span className="text-green-600">{total} ر.س</span>
           </div>
           <div className="text-sm text-gray-600 text-center">السعر بعد الخصم شامل الضرائب و الرسوم</div>
         </div>
