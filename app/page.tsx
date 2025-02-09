@@ -3,10 +3,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import { InsuranceStepThree } from "@/components/insurance-step-three"
-import { InsuranceStepFour } from "@/components/insurance-step-four"
 import { useState } from "react"
 import { InsuranceStepTwo } from "@/components/insurance-step-two"
-import { PaymentMethods } from "@/components/payment-methods"
 import { PaymentForm } from "@/components/payment-form"
 import { OTPVerification } from "@/components/otp-verification"
 import { LoadingSpinner } from "@/components/spiner"
@@ -102,6 +100,7 @@ export default function Page() {
                 setStep(2)
                 await handleStepSubmit(
                   {
+                    createdDate:new Date().toISOString(),
                     vehicleInfo: {
                       serialNumber: formData.get("serialNumber"),
                       idNumber: formData.get("idNumber"),
