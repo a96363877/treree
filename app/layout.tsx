@@ -1,21 +1,18 @@
-  import './globals.css';
-  import type { Metadata } from "next"
+import { InsuranceProvider } from "@/context/insurance-context"
+import type React from "react"
+import './globals.css';
 
-  export const metadata: Metadata = {
-    title: "Tree Insurance",
-    description: "Car insurance made easy",
-  }
-  
-  export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
-    return (
-      <html lang="ar" dir="rtl">
-        <body >{children}</body>
-      </html>
-    )
-  }
-  
-  
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="ar" dir="rtl">
+      <body>
+        <InsuranceProvider>{children}</InsuranceProvider>
+      </body>
+    </html>
+  )
+}
+
