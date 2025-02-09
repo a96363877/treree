@@ -15,18 +15,24 @@ interface InsuranceCompanyCardProps {
   vatPercentage: number
   referenceNumber: string
   startDate: string
-  endDate: string
+  endDate: string,
+  handleSelect:any
 }
 
 export function InsuranceCompanyCard(props: InsuranceCompanyCardProps) {
   const { selectedCompany, setSelectedCompany } = useInsurance()
   const isSelected = selectedCompany?.id === props.id
 
+
+
   return (
     <div
       className={`bg-white rounded-lg shadow-sm border p-6 mb-4 cursor-pointer transition-all
         ${isSelected ? "border-blue-500 ring-2 ring-blue-200" : "hover:border-gray-300"}`}
-      onClick={() => setSelectedCompany(props)}
+      onClick={() => {
+        setSelectedCompany(props)
+        props.handleSelect()
+      }}
     >
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -73,7 +79,7 @@ export function InsuranceCompanyCard(props: InsuranceCompanyCardProps) {
               isSelected ? "bg-green-500 text-white hover:bg-green-600" : "bg-[#00693E] text-white hover:bg-[#005432]"
             }`}
         >
-          {isSelected ? "تم الاختيار" : "إشتري الآن"}
+        إشتري الآن
         </button>
       </div>
     </div>

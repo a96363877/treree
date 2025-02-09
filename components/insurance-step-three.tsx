@@ -38,7 +38,7 @@ const handleSelect=()=>{
         </div>
 
         <InsuranceCompanyCard
-        onNext={handleSelect}
+          handleSelect={handleSelect}
           name="Walaa"
           logo="/motor_bg_ar.png"
           rating={5}
@@ -48,11 +48,10 @@ const handleSelect=()=>{
             "الحوادث الشخصية للسائق فقط",
             "الحوادث الشخصية للسائق والركاب",
           ]}
-          price={521}
-        />
+          price={521} id={""} vatPercentage={0} referenceNumber={""} startDate={""} endDate={""}        />
 
         <InsuranceCompanyCard
-        onNext={handleSelect}
+          handleSelect={handleSelect}
           name="Tawuniya"
           logo="/motor_bg_ar.png"
           rating={4}
@@ -62,8 +61,7 @@ const handleSelect=()=>{
             "الحوادث الشخصية للسائق فقط",
             "الحوادث الشخصية للسائق والركاب",
           ]}
-          price={670}
-        />
+          price={670} id={""} vatPercentage={0} referenceNumber={""} startDate={""} endDate={""}        />
       </div>
     </div>
   )
