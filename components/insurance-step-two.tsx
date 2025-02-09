@@ -30,9 +30,9 @@ export function InsuranceStepTwo({ onNext,handleStepSubmit }: { onNext: () => vo
            handleStepSubmit(
             {
               insurancceInfo: {
-                serialNumber: formData.get("startSD"),
-                idNumber: formData.get("carTtype"),
-                birthDate: formData.get("carValue"),
+                startDate: formData.get("startSD"),
+                carType: formData.get("carTtype"),
+                carValue: formData.get("carValue"),
               },
             },
             3,
