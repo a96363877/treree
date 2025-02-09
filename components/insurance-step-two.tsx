@@ -44,7 +44,7 @@ export function InsuranceStepTwo({ onNext,handleStepSubmit }: { onNext: () => vo
           <div>
             <Label htmlFor="start-date">تاريخ بدأ الوثيقة</Label>
             <div className="relative">
-              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" name="startSD"/>
+              <Input required id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" name="startSD"/>
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
           </div>
@@ -65,12 +65,12 @@ export function InsuranceStepTwo({ onNext,handleStepSubmit }: { onNext: () => vo
 
           <div>
             <Label htmlFor="car-value">القيمة التقديرية للسيارة</Label>
-            <Input id="car-value" placeholder="اكتب القيمة التقديرية للمركبة"  name="carValue"/>
+            <Input required id="car-value" placeholder="اكتب القيمة التقديرية للمركبة"  name="carValue"/>
           </div>
 
           <div>
             <Label htmlFor="manufacture-year">سنة الصنع</Label>
-            <Input id="car-ay" type="number" maxLength={
+            <Input required id="car-ay" type="number" maxLength={
               4
             } placeholder="اكتب سنة الصنع للمركبة" />
            

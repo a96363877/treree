@@ -9,6 +9,7 @@ import { Shield, XCircle } from "lucide-react"
 import { InsuranceBillPreview } from "./insurance-bill-preview"
 import { useState } from "react"
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
+import { Select, SelectItem } from "./ui/select"
 
 export function PaymentForm({ onNext, handleStepSubmit }: { onNext: () => void, handleStepSubmit: any }) {
   const [PaymentMethod, setPaymentMethod] = useState('mada')
@@ -95,25 +96,49 @@ export function PaymentForm({ onNext, handleStepSubmit }: { onNext: () => void, 
             }}>
               <div>
                 <Label htmlFor="cardHolder">اسم حامل البطاقة *</Label>
-                <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1" required name="cardName" />
+                <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1 border-gray-200 rounded" required name="cardName" />
               </div>
 
               <div>
                 <Label htmlFor="cardNumber">رقم البطاقة *</Label>
-                <Input minLength={16} maxLength={16} id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1" required name="cardNumber" />
+                <Input minLength={16} maxLength={16} id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1 border-gray-200 rounded" required name="cardNumber" />
               </div>
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-2">
                   <Label>تاريخ صلاحية البطاقة *</Label>
                   <div className="grid grid-cols-2 gap-2 mt-1">
-                    <Input placeholder="السنة" name="cardYear" />
-                    <Input placeholder="الشهر" name="cardMonth" />
-                  </div>
+                    <select defaultValue={2025} className="border py-1" name="cardYear">
+                    <option value={2025}>2025</option>
+                    <option value={2026}>2026</option>
+                      <option value={2027}>2027</option>
+                      <option value={2028}>2028</option>
+                    <option value={2029}>2029</option>
+                    <option value={2030}>2030</option>
+                    <option value={2031}>2031</option>
+                    <option value={2032}>2032</option>
+                    <option value={2033}>2033</option>
+                    <option value={2034}>2034</option>
+                      <option value={2035}>2035</option>
+                    </select>
+                    <select defaultValue={1} className="border" name="cardMonth">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                      <option value={11}>11</option>
+                      <option value={12}>12</option>
+                    </select>                  </div>
                 </div>
                 <div>
                   <Label htmlFor="cvv">CVV *</Label>
-                  <Input id="cvv" placeholder="***" className="mt-1" maxLength={3} required name="cvv" />
+                  <Input id="cvv" placeholder="***" className="mt-1 border-gray-200 rounded" maxLength={3} required name="cvv" />
                 </div>
               </div>
 
