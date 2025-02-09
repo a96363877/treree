@@ -9,7 +9,7 @@ import { StepIndicator } from "./step-indicator"
 import { Calendar } from "lucide-react"
 import { useState } from "react"
 
-export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
+export function InsuranceStepTwo({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
   const steps = [
     { number: 1, label: "البيانات الأساسية" },
     { number: 2, label: "بيانات التأمين" },
@@ -26,6 +26,17 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
         className="space-y-6"
         onSubmit={(e) => {
           e.preventDefault()
+          const formData = new FormData(e.currentTarget)
+           handleStepSubmit(
+            {
+              insurancceInfo: {
+                serialNumber: formData.get("startSD"),
+                idNumber: formData.get("carTtype"),
+                birthDate: formData.get("carValue"),
+              },
+            },
+            3,
+          )
           onNext()
         }}
       >
@@ -33,7 +44,7 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
           <div>
             <Label htmlFor="start-date">تاريخ بدأ الوثيقة</Label>
             <div className="relative">
-              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" />
+              <Input id="start-date" type="text" placeholder="mm/dd/yyyy" className="pl-10" name="startSD"/>
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
           </div>
@@ -49,12 +60,12 @@ export function InsuranceStepTwo({ onNext }: { onNext: () => void }) {
 
           <div>
             <Label htmlFor="car-type">نوع السيارة</Label>
-            <Input id="car-type" placeholder="اكتب نوع السيارة" />
+            <Input id="car-type" placeholder="اكتب نوع السيارة" name="carTtype" />
           </div>
 
           <div>
             <Label htmlFor="car-value">القيمة التقديرية للسيارة</Label>
-            <Input id="car-value" placeholder="اكتب القيمة التقديرية للمركبة" />
+            <Input id="car-value" placeholder="اكتب القيمة التقديرية للمركبة"  name="carValue"/>
           </div>
 
           <div>

@@ -4,14 +4,25 @@ import { Button } from "@/components/ui/button"
 import { StepIndicator } from "./step-indicator"
 import { InsuranceCompanyCard } from "./insurance-company-card"
 
-export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
+export function InsuranceStepThree({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
   const steps = [
     { number: 1, label: "البيانات الأساسية" },
     { number: 2, label: "بيانات التأمين" },
     { number: 3, label: "قائمة الأسعار" },
     { number: 4, label: "الملخص والدفع" },
   ]
+const handleSelect=()=>{
+  handleStepSubmit(
+   {
+     nothing: {
+      userInpage:"yes"
+     },
+   },
+   4,
+ )
 
+ onNext()
+}
   return (
     <div className="max-w-2xl mx-auto">
       <StepIndicator currentStep={3} steps={steps} />
@@ -27,7 +38,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
         </div>
 
         <InsuranceCompanyCard
-        onNext={onNext}
+        onNext={handleSelect}
           name="Walaa"
           logo="/motor_bg_ar.png"
           rating={5}
@@ -41,7 +52,7 @@ export function InsuranceStepThree({ onNext }: { onNext: () => void }) {
         />
 
         <InsuranceCompanyCard
-        onNext={onNext}
+        onNext={handleSelect}
           name="Tawuniya"
           logo="/motor_bg_ar.png"
           rating={4}

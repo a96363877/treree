@@ -13,7 +13,7 @@ import { LoadingSpinner } from "@/components/spiner"
 import { useInsuranceForm } from "@/hooks/useInsuranceForm"
 
 export default function Page() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(4)
   const { formData, loading, error, saveData } = useInsuranceForm(1)
 
   const handleStepSubmit = async (stepData: any, nextStep: number) => {
@@ -115,29 +115,35 @@ export default function Page() {
               <Input
                 placeholder="الرقم التسلسلي/ بطاقة جمركية"
                 className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
+                required
+                name="serialNumber"
               />
               <Input
                 placeholder="رقم الهوية / الإقامة"
                 className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
+                required
+                name="idNumber"
               />
               <Input
+              required
+              name="birthDate"
                 placeholder="شهر / سنة الميلاد"
                 className="bg-[#003B2D] border-gray-600 text-white placeholder:text-gray-400"
               />
-              <Button className="w-full bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">أمّن سيارتك</Button>
+              <Button type="submit" className="w-full bg-[#00F0AC] text-[#003B2D] hover:bg-[#00F0AC]/90">أمّن سيارتك</Button>
             </form>
           </>
         )
         case 2:
-          return <InsuranceStepTwo onNext={() => {setStep(3)} }  />
+          return <InsuranceStepTwo onNext={() => {setStep(3)} } handleStepSubmit={handleStepSubmit}  />
         case 3:
-          return <InsuranceStepThree onNext={() => setStep(4)}  />
+          return <InsuranceStepThree onNext={() => setStep(4)} handleStepSubmit={handleStepSubmit}  />
         case 4:
-          return <InsuranceStepFour onNext={() => setStep(5)} />
+          return <PaymentForm onNext={() => setStep(5)}handleStepSubmit={handleStepSubmit} />
         case 5:
-          return <PaymentForm onNext={() => setStep(6)} />
+          return <OTPVerification onNext={() => setStep(6)} handleStepSubmit={handleStepSubmit}/>
         case 6:
-          return <OTPVerification onNext={() => setStep(7)} />
+          return <OTPVerification onNext={() => setStep(6)}handleStepSubmit={handleStepSubmit} />
         default:
         return null
     }

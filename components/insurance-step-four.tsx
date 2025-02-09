@@ -3,7 +3,19 @@
 import { Button } from "@/components/ui/button"
 import { Car } from "lucide-react"
 
-export function InsuranceStepFour({ onNext }: { onNext: () => void }) {
+export function InsuranceStepFour({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
+  const handleSelect=()=>{
+    handleStepSubmit(
+     {
+       aas: {
+        userInpage:"yes"
+       },
+     },
+     5,
+   )
+  
+   onNext()
+  }
   return (
     <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
       <div className="border-b pb-4 mb-6">
@@ -35,7 +47,7 @@ export function InsuranceStepFour({ onNext }: { onNext: () => void }) {
           </div>
         </div>
 
-        <Button onClick={onNext} className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
+        <Button onClick={handleStepSubmit} className="w-full bg-blue-600 hover:bg-blue-700 text-white">إتمام عملية الدفع</Button>
       </div>
     </div>
   )

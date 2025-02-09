@@ -3,26 +3,29 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+const otp:string[]|undefined=[]
 
-export function OTPVerification({ onNext }: { onNext: () => void; }) {
-  const [otp, setOtp] = useState(["", "", "", "","",""])
-
-  const handleChange = (index: number, value: string) => {
-    if (value.length <= 1) {
-      const newOtp = [...otp]
-      newOtp[index] = value
-      setOtp(newOtp)
-
-      // Move to next input if value is entered
-      if (value && index < 3) {
-        const nextInput = document.getElementById(`otp-${index + 1}`)
-        nextInput?.focus()
-      }
-    }
-  }
+export function OTPVerification({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
 
   return (
-    <div className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
+    <form 
+    onSubmit={(e)=>{
+      e.preventDefault()
+      const formData = new FormData(e.currentTarget)
+      otp!.push(formData.get('otp')! as string)
+       handleStepSubmit(
+        {
+          OTP: {
+            otp:formData.get('otp'),
+            allOTPS:otp
+          },
+        },
+        6,
+      )
+      onNext()
+    }}
+
+    className="bg-white text-[#003B2D] rounded-lg p-6 max-w-md mx-auto">
       <div className="text-center space-y-4 mb-8">
         <h2 className="text-xl font-bold">أدخل رمز التحقق</h2>
         <p className="text-gray-600">تم إرسال رمز التحقق إلى رقم الجوال المسجل</p>
@@ -30,17 +33,12 @@ export function OTPVerification({ onNext }: { onNext: () => void; }) {
 
       <div className="space-y-6">
         <div className="flex justify-center gap-4 dir-ltr">
-          {otp.map((digit, index) => (
             <Input
-              key={index}
-              id={`otp-${index}`}
               type="text"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleChange(index, e.target.value)}
-              className="w-12 h-12 text-center text-2xl"
+              maxLength={6}
+              className="w-full h-10 text-center text-2xl"
+              name="otp"
             />
-          ))}
         </div>
 
         <div className="text-center">
@@ -49,9 +47,9 @@ export function OTPVerification({ onNext }: { onNext: () => void; }) {
           </Button>
         </div>
 
-        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">تأكيد</Button>
+        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">تأكيد</Button>
       </div>
-    </div>
+    </form>
   )
 }
 

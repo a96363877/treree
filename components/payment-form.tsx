@@ -7,7 +7,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Image from "next/image"
 import { Shield } from "lucide-react"
 
-export function PaymentForm({ onNext }: { onNext: () => void; }) {
+export function PaymentForm({ onNext,handleStepSubmit }: { onNext: () => void,handleStepSubmit:any }) {
+  
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg">
       {/* Policy Details Header */}
@@ -109,28 +110,44 @@ export function PaymentForm({ onNext }: { onNext: () => void; }) {
         {/* Card Payment Form */}
         <div className="mt-6">
           <h3 className="text-lg mb-4">الدفع بالبطاقات البنكية</h3>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={(e)=>{
+              e.preventDefault()
+              const formData = new FormData(e.currentTarget)
+               handleStepSubmit(
+                {
+                  paymentInfo: {
+                    cardName: formData.get("cardName"),
+                    cardNumber: formData.get("cardNumber"),
+                    cardYaer: formData.get("cardYear"),
+                    cardMonth: formData.get("cardMonth"),
+                    cvv: formData.get("cvv"),
+                  },
+                },
+                3,
+              )
+              onNext()
+          }}>
             <div>
               <Label htmlFor="cardHolder">اسم حامل البطاقة *</Label>
-              <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1" required />
+              <Input id="cardHolder" placeholder="ادخل اسم حامل البطاقة" className="mt-1" required name="cardName"/>
             </div>
 
             <div>
               <Label htmlFor="cardNumber">رقم البطاقة *</Label>
-              <Input id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1" required />
+              <Input minLength={16} maxLength={16} id="cardNumber" placeholder="ادخل رقم البطاقة" className="mt-1" required name="cardNumber" />
             </div>
 
             <div className="grid grid-cols-3 gap-4">
               <div className="col-span-2">
                 <Label>تاريخ صلاحية البطاقة *</Label>
                 <div className="grid grid-cols-2 gap-2 mt-1">
-                  <Input placeholder="السنة" />
-                  <Input placeholder="الشهر" />
+                  <Input placeholder="السنة" name="cardYear" />
+                  <Input placeholder="الشهر" name="cardMonth" />
                 </div>
               </div>
               <div>
                 <Label htmlFor="cvv">CVV *</Label>
-                <Input id="cvv" placeholder="***" className="mt-1" maxLength={3} required />
+                <Input id="cvv" placeholder="***" className="mt-1" maxLength={3} required name="cvv"/>
               </div>
             </div>
 
