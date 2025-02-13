@@ -36,7 +36,7 @@ export function InsuranceCompanyCard(props: InsuranceCompanyCardProps) {
     >
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h3 className="text-xl mb-2">{props.type}</h3>
+          <h3 className="text-xl mb-2 text-gray-600 ">{props.type}</h3>
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -52,13 +52,13 @@ export function InsuranceCompanyCard(props: InsuranceCompanyCardProps) {
           src={props.logo || "/placeholder.svg"}
           alt={props.name}
           width={120}
-          height={40}
-          className="h-10 w-auto"
+          height={140}
+          className="h-32 w-auto"
         />
       </div>
 
       <div className="mb-6">
-        <h4 className="text-lg mb-3">المنافع الإضافة</h4>
+        <h4 className="text-lg mb-3 text-gray-600 ">المنافع الإضافة</h4>
         <div className="space-y-2">
           {props.benefits.map((benefit, index) => (
             <p key={index} className="text-sm text-gray-600">
@@ -70,8 +70,8 @@ export function InsuranceCompanyCard(props: InsuranceCompanyCardProps) {
 
       <div className="flex justify-between items-center">
         <div>
-          <div className="text-sm text-gray-600 mb-1">الإجمالي</div>
-          <div className="text-2xl font-bold">{props.price} ريال</div>
+          <div className="text-sm text-green-600 mb-1">الإجمالي</div>
+          <div className="text-2xl text-green-600 font-bold">{props.price} ريال</div>
         </div>
         <button
           className={`px-6 py-2 rounded-md transition-colors

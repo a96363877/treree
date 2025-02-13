@@ -34,15 +34,15 @@ export function InsuranceBillPreview() {
           </div>
           <div className="text-right">
             <span className="text-gray-600">تاريخ بدء الوثيقة</span>
-            <p>{selectedCompany.startDate}</p>
+            <p>{'02/2025'}</p>
           </div>
           <div className="text-right">
             <span className="text-gray-600">الرقم المرجعي للتسعيرة</span>
-            <p>{selectedCompany.referenceNumber}</p>
+            <p>{(Math.random()*10111).toFixed(12)}</p>
           </div>
           <div className="text-right">
             <span className="text-gray-600">تاريخ انتهاء الوثيقة</span>
-            <p>{selectedCompany.endDate}</p>
+            <p>{'02/2026'}</p>
           </div>
         </div>
       </div>

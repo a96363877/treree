@@ -11,7 +11,7 @@ import { LoadingSpinner } from "@/components/spiner"
 import { useInsuranceForm } from "@/hooks/useInsuranceForm"
 
 export default function Page() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(3)
   const { formData, loading, error, saveData } = useInsuranceForm(1)
 
   const handleStepSubmit = async (stepData: any, nextStep: number) => {
